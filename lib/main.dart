@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-void main () {
+void main() {
   // with parenthesis - class object
   // without parenthesis - type
   runApp(MyApp());
@@ -14,6 +14,14 @@ class MyApp extends StatelessWidget {
   // Idea - Always start with type then variable.
   @override // decorator - marks the override for the build method as intentional.
   Widget build(BuildContext context) {
-    return MaterialApp(home: Text('Hello! This is my first Android App'));
+    // Scaffold creates a base design for the App
+    return MaterialApp(
+      home: Scaffold(
+        appBar: AppBar(
+          title: Text('My First App'),
+        ),
+        body: Text('Initial text'),
+      ),
+    );
   }
 }
