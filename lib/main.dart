@@ -11,7 +11,6 @@ void main() {
 
 // inheritance using extends
 class MyApp extends StatefulWidget {
-
   @override
   State<StatefulWidget> createState() {
     // Todo: implement createState
@@ -21,6 +20,7 @@ class MyApp extends StatefulWidget {
 
 class _MyAppState extends State<MyApp> {
   var _questionIndex = 0;
+
   void _answerQuestions() {
     setState(() {
       _questionIndex = _questionIndex + 1;
@@ -34,9 +34,20 @@ class _MyAppState extends State<MyApp> {
   // Idea - Always start with type then variable.
   @override // decorator - marks the override for the build method as intentional.
   Widget build(BuildContext context) {
+    // build a map
     var questions = [
-      'What\'s your favourite color',
-      'What is your favourite animal'
+      {
+        'questionText': 'What\'s your favourite color',
+        'answers': ['Black', 'White', 'Green', 'Violet'],
+      },
+      {
+        'questionText': 'What\'s your favourite animal',
+        'answers': ['Elephant', 'Lion', 'Giraffe', 'Cow'],
+      },
+      {
+        'questionText': 'What\'s your favourite guy',
+        'answers': ['Freddy', 'Freddy', 'Freddy', 'Freddy'],
+      },
     ];
     // Scaffold creates a base design for the App
     return MaterialApp(
@@ -46,10 +57,11 @@ class _MyAppState extends State<MyApp> {
           ),
           body: Column(
             children: <Widget>[
-              Question(questions.elementAt(_questionIndex)), // same as questions[0]
-             Answer(),
-             Answer(),
-             Answer(),
+              Question(questions.elementAt(_questionIndex)),
+              // same as questions[0]
+              Answer(_answerQuestions),
+              Answer(_answerQuestions),
+              Answer(_answerQuestions),
             ],
           )),
     );

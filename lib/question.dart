@@ -14,7 +14,7 @@ class Question extends StatelessWidget {
         margin: EdgeInsets.all(10), // additional class constructors
         child: Text(
           questionText,
-          style: TextStyle(fontSize: 28),
+          style: TextStyle(fontSize: 26),
           textAlign: TextAlign.center, // enum
         ));
   }
