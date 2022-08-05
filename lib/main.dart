@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-import './question.dart';
 import './answer.dart';
+import './question.dart';
 
 void main() {
   // with parenthesis - class object
@@ -20,12 +20,29 @@ class MyApp extends StatefulWidget {
 
 class _MyAppState extends State<MyApp> {
   var _questionIndex = 0;
+  final questions = const [
+    {
+      'questionText': 'What\'s your favourite color',
+      'answers': ['Black', 'White', 'Green', 'Violet'],
+    },
+    {
+      'questionText': 'What\'s your favourite animal',
+      'answers': ['Elephant', 'Lion', 'Giraffe', 'Cow'],
+    },
+    {
+      'questionText': 'What\'s your favourite guy',
+      'answers': ['Freddy', 'Freddy', 'Freddy', 'Freddy'],
+    },
+  ];
 
   void _answerQuestions() {
     setState(() {
       _questionIndex = _questionIndex + 1;
     });
-    print('Answer chosen');
+    print(_questionIndex);
+    // if (_questionIndex < questions.length) {
+    //   print('We have more questions');
+    // }
   }
 
   // BuildContext  - object type provided by flutter
@@ -34,21 +51,6 @@ class _MyAppState extends State<MyApp> {
   // Idea - Always start with type then variable.
   @override // decorator - marks the override for the build method as intentional.
   Widget build(BuildContext context) {
-    // build a map
-    var questions = [
-      {
-        'questionText': 'What\'s your favourite color',
-        'answers': ['Black', 'White', 'Green', 'Violet'],
-      },
-      {
-        'questionText': 'What\'s your favourite animal',
-        'answers': ['Elephant', 'Lion', 'Giraffe', 'Cow'],
-      },
-      {
-        'questionText': 'What\'s your favourite guy',
-        'answers': ['Freddy', 'Freddy', 'Freddy', 'Freddy'],
-      },
-    ];
     // Scaffold creates a base design for the App
     return MaterialApp(
       home: Scaffold(
@@ -57,11 +59,11 @@ class _MyAppState extends State<MyApp> {
           ),
           body: Column(
             children: <Widget>[
-              Question(questions.elementAt(_questionIndex)),
-              // same as questions[0]
-              Answer(_answerQuestions),
-              Answer(_answerQuestions),
-              Answer(_answerQuestions),
+              Question(questions[_questionIndex]['questionText']),
+              ...(questions[_questionIndex]['answers'] as List<String>)
+                  .map((answer) {
+                return Answer(_answerQuestions, answer);
+              }).toList()
             ],
           )),
     );
