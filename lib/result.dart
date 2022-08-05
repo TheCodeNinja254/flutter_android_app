@@ -27,7 +27,16 @@ class Result extends StatelessWidget {
         child: Column(children: <Widget>[
       Text(resultPhrase,
           style: TextStyle(fontSize: 36, fontWeight: FontWeight.bold)),
-      FlatButton(onPressed: resetQuiz, child: Text('Restart Quiz'))
+      TextButton(
+        onPressed: resetQuiz,
+        child: Text('Restart Quiz'),
+        style: TextButton.styleFrom(primary: Colors.orange),
+      ),
+      OutlinedButton(
+        onPressed: resetQuiz,
+        child: Text('Restart Quiz'),
+        style: OutlinedButton.styleFrom(primary: Colors.orange),
+      )
     ]));
   }
 }
