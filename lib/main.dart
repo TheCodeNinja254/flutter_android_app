@@ -40,9 +40,6 @@ class _MyAppState extends State<MyApp> {
       _questionIndex = _questionIndex + 1;
     });
     print(_questionIndex);
-    // if (_questionIndex < questions.length) {
-    //   print('We have more questions');
-    // }
   }
 
   // BuildContext  - object type provided by flutter
@@ -57,15 +54,17 @@ class _MyAppState extends State<MyApp> {
           appBar: AppBar(
             title: Text('My First App'),
           ),
-          body: Column(
-            children: <Widget>[
-              Question(questions[_questionIndex]['questionText']),
-              ...(questions[_questionIndex]['answers'] as List<String>)
-                  .map((answer) {
-                return Answer(_answerQuestions, answer);
-              }).toList()
-            ],
-          )),
+          body: _questionIndex < questions.length
+              ? Column(
+                  children: <Widget>[
+                    Question(questions[_questionIndex]['questionText']),
+                    ...(questions[_questionIndex]['answers'] as List<String>)
+                        .map((answer) {
+                      return Answer(_answerQuestions, answer);
+                    }).toList()
+                  ],
+                )
+              : Center(child: Text('You did it'))),
     );
   }
 }
